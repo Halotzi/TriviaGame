@@ -22,10 +22,10 @@ public class ServerManager : MonoBehaviour
         }
     }
 
-    internal string GetRequest(string v)
-    {
-        throw new NotImplementedException();
-    }
+    //internal string GetRequest(string v)
+    //{
+    //    throw new NotImplementedException();
+    //}
 
     public IEnumerator GetRequest(string uri, Action<string, int> OnCompleteRequest, int currentCategoryID)
     {

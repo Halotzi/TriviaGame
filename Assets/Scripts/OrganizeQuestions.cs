@@ -70,7 +70,8 @@ public class OrganizeQuestions : MonoBehaviour
     {
         QuestionsIds questionsId = JsonUtility.FromJson<QuestionsIds>(json);
         Stack<int> questionStack = new Stack<int>();
-
+        if (MaxQuestionsFromDifficulty > MaxQuestionsPerCategory)
+            MaxQuestionsFromDifficulty = MaxQuestionsPerCategory;
         for (int i = 0; i < MaxQuestionsFromDifficulty; i++)
         {
             int idLocation = UnityEngine.Random.Range(0, questionsId.questionsIds.Count);
@@ -79,7 +80,7 @@ public class OrganizeQuestions : MonoBehaviour
         }
         CategorysNames.Add(questionsId.CategoryName);
         questions.Add(questionsId.CategoryName, questionStack);
-    
+        MaxQuestionsFromDifficulty=PlayerData.DifficultyLevel;
         if (questions.Count == CountedCategorys)
         {
             if (OnQuestionsReceived != null)

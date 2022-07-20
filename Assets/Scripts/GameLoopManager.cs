@@ -14,6 +14,7 @@ public class GameLoopManager : MonoBehaviour
     [Tooltip("The list of the category name. Those are the key values to find the stacks in the Dictionary")]
     private List<string> _categoryNames = new List<string>();
 
+    //Connect other classes
     [SerializeField] private ReciveQuestion reciveQuestion;
     [SerializeField] private OrganizeQuestions organizeQuestions;
     [SerializeField] private Timer timer;
@@ -31,8 +32,6 @@ public class GameLoopManager : MonoBehaviour
     [SerializeField] private TMP_Text _categoryCountdownText;
     [SerializeField] private TMP_Text CategoryText;
 
-    static public int GameScore;
-
     private void Awake()
     {
         OrganizeQuestions.OnQuestionsReceived+= SetListOfQuestions;
@@ -42,7 +41,7 @@ public class GameLoopManager : MonoBehaviour
     private void TurnOnEndGameCanvas()
     {
         playerData.SendData();
-        _finaleGameScore.text = GameScore.ToString();
+        _finaleGameScore.text = PlayerData.PlayerScore.ToString();
         PlayerUICanvas.gameObject.SetActive(false);
         QuestionCanvas.gameObject.SetActive(false);
         GameFinishedCanvas.gameObject.SetActive(true);

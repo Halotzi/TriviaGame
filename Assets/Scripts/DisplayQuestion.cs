@@ -40,27 +40,7 @@ public class DisplayQuestion : MonoBehaviour
             yield return null;
         }
 
-        //Check if you are right
-        if (playerAnswer == currectAnswer)
-        {
-            PlayerData.PlayerScore++;
-        }
-
-        //If you are wrong
-        else
-        {
-            if (!(playerAnswer - 1 < 0))
-                answers[playerAnswer - 1].image.color = Color.red;
-        }
-            
-        //Mark the right answer
-        answers[currectAnswer-1].image.color = Color.green;
-
-        //All the buttons are interactables
-        for (int i = 0; i < answers.Length; i++)
-        {
-            answers[i].interactable = false;
-        }
+        CheckPlayerAnswer();
 
         //Timer to see the right answer
         timer.StrtTimer(5);
@@ -76,6 +56,41 @@ public class DisplayQuestion : MonoBehaviour
             answers[i].interactable = true;
         }
         ReciveQuestion.RaciveNextQuestion = true;
+    }
+
+    private void CheckPlayerAnswer()
+    {
+        //Check if you are right your score will be updated
+        if (playerAnswer == currectAnswer)
+        {
+            PlayerData.PlayerScore++;
+        }
+
+        //If the player didnt chose any button it will mark everything red
+        else if(playerAnswer==0)
+        {
+            for (int i = 0; i < answers.Length; i++)
+            {
+               if (answers[i] != answers[currectAnswer - 1])
+                    answers[i].image.color = Color.red;
+            }
+        }
+
+        //If you are wrong, your answer will be red
+        else
+        {
+            if (!(playerAnswer - 1 < 0))
+                answers[playerAnswer - 1].image.color = Color.red;
+        }
+
+        //Mark the right answer
+        answers[currectAnswer - 1].image.color = Color.green;
+
+        //All the buttons are interactables
+        for (int i = 0; i < answers.Length; i++)
+        {
+            answers[i].interactable = false;
+        }
     }
 
     public void GetPlayerAnswer(int buttonNum)
