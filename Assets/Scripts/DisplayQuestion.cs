@@ -16,11 +16,12 @@ public class DisplayQuestion : MonoBehaviour
     Button[] answers = new Button[4];
 
     private int currectAnswer;
-    private int playerAnswer=0;
+    private int playerAnswer;
     
     
     public void ShowQuestion(ShowQuestion showQuestion)
     {
+        playerAnswer = 0;
         _question.text = showQuestion.question_text;
         _ans1.text = showQuestion.ans1_text;
         _ans2.text = showQuestion.ans2_text;
