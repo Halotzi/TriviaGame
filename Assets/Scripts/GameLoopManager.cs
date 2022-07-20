@@ -38,6 +38,11 @@ public class GameLoopManager : MonoBehaviour
         OrganizeQuestions.OnCategorysNamesReceived+= SetListOfCategoryNames;
     }
 
+    public void ExitGame()
+    {
+        Application.Quit();
+    }
+
     private void TurnOnEndGameCanvas()
     {
         playerData.SendData();
